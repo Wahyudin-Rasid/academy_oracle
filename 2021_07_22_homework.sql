@@ -1,20 +1,21 @@
---°úÁ¦.
+--ê³¼ì œ.
 select * from emp;
 
---       Q1. SMITH¿Í µ¿ÀÏÇÑ Á÷±ÞÀ» °¡Áø »ç¿øÀÇ ÀÌ¸§°ú Á÷±ÞÀ» Ãâ·ÂÇÏ´Â 
---            SQL¹®À» ÀÛ¼º ÇÏ¼¼¿ä?
+--       Q1. SMITHì™€ ë™ì¼í•œ ì§ê¸‰ì„ ê°€ì§„ ì‚¬ì›ì˜ ì´ë¦„ê³¼ ì§ê¸‰ì„ ì¶œë ¥í•˜ëŠ” 
+--            SQLë¬¸ì„ ìž‘ì„± í•˜ì„¸ìš”?
 select ename, job from emp where job = 
-    (select job from emp where ename = 'SMITH');
---       Q2. Á÷±ÞÀÌ 'SALESMAN'ÀÎ »ç¿øÀÌ ¹Þ´Â ±Þ¿©µéÀÇ ÃÖ´ë ±Þ¿©º¸´Ù
--- 	¸¹ÀÌ ¹Þ´Â »ç¿øµéÀÇ ÀÌ¸§°ú ±Þ¿©¸¦ Ãâ·ÂÇÏµÇ ºÎ¼­¹øÈ£°¡ 
---	20¹øÀÎ »ç¿øÀº Á¦¿ÜÇÑ´Ù.(ALL¿¬»êÀÚ ÀÌ¿ë)
+    (select job from emp where ename = 'SMITH')
+    and ename != 'SMITH';
+--       Q2. ì§ê¸‰ì´ 'SALESMAN'ì¸ ì‚¬ì›ì´ ë°›ëŠ” ê¸‰ì—¬ë“¤ì˜ ìµœëŒ€ ê¸‰ì—¬ë³´ë‹¤
+-- 	ë§Žì´ ë°›ëŠ” ì‚¬ì›ë“¤ì˜ ì´ë¦„ê³¼ ê¸‰ì—¬ë¥¼ ì¶œë ¥í•˜ë˜ ë¶€ì„œë²ˆí˜¸ê°€ 
+--	20ë²ˆì¸ ì‚¬ì›ì€ ì œì™¸í•œë‹¤.(ALLì—°ì‚°ìž ì´ìš©)
 select ename, sal from emp where sal > 
-all(select max(sal) from emp where job = 'SALESMAN')
+all(select sal from emp where job = 'SALESMAN')
 and deptno != 20;
 --
---       Q3. Á÷±ÞÀÌ 'SALESMAN'ÀÎ »ç¿øÀÌ ¹Þ´Â ±Þ¿©µéÀÇ ÃÖ¼Ò ±Þ¿©º¸´Ù 
--- 	¸¹ÀÌ ¹Þ´Â »ç¿øµéÀÇ ÀÌ¸§°ú ±Þ¿©¸¦ Ãâ·ÂÇÏµÇ ºÎ¼­¹øÈ£°¡ 
---	20¹øÀÌ »ç¿øÀº Á¦¿ÜÇÑ´Ù.(ANY¿¬»êÀÚ ÀÌ¿ë)
+--       Q3. ì§ê¸‰ì´ 'SALESMAN'ì¸ ì‚¬ì›ì´ ë°›ëŠ” ê¸‰ì—¬ë“¤ì˜ ìµœì†Œ ê¸‰ì—¬ë³´ë‹¤ 
+-- 	ë§Žì´ ë°›ëŠ” ì‚¬ì›ë“¤ì˜ ì´ë¦„ê³¼ ê¸‰ì—¬ë¥¼ ì¶œë ¥í•˜ë˜ ë¶€ì„œë²ˆí˜¸ê°€ 
+--	20ë²ˆì´ ì‚¬ì›ì€ ì œì™¸í•œë‹¤.(ANYì—°ì‚°ìž ì´ìš©)
 select ename, sal, deptno from emp where sal >
-any(select min(sal) from emp where job = 'SALESMAN')
+any(select sal from emp where job = 'SALESMAN')
 and deptno != 20;
