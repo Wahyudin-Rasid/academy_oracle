@@ -1,14 +1,14 @@
---2021_07_21 °úÁ¦
+--2021_07_21 ê³¼ì œ
 select * from emp;
 select * from dept;
---°úÁ¦.
---       Q1. Á÷±ŞÀÌ MANAGERÀÎ »ç¿øÀÇ ÀÌ¸§, ºÎ¼­¸íÀ» Ãâ·ÂÇÏ´Â SQL¹®À»
---             ÀÛ¼º ÇÏ¼¼¿ä? (JOINÀ» »ç¿ëÇÏ¿© Ã³¸®)
+--ê³¼ì œ.
+--       Q1. ì§ê¸‰ì´ MANAGERì¸ ì‚¬ì›ì˜ ì´ë¦„, ë¶€ì„œëª…ì„ ì¶œë ¥í•˜ëŠ” SQLë¬¸ì„
+--             ì‘ì„± í•˜ì„¸ìš”? (JOINì„ ì‚¬ìš©í•˜ì—¬ ì²˜ë¦¬)
 select e.ename, d.dname from emp e, dept d where e.job='MANAGER' and e.deptno = d.deptno;
 --   
---       Q2. ¸Å´ÏÀú°¡ KING ÀÎ »ç¿øµéÀÇ ÀÌ¸§°ú Á÷±ŞÀ» Ãâ·ÂÇÏ´Â SQL¹® ÀÛ¼º?
-select employee.ename, employee.job from emp employee, emp manager where employee.mgr = manager.empno;
+--       Q2. ë§¤ë‹ˆì €ê°€ KING ì¸ ì‚¬ì›ë“¤ì˜ ì´ë¦„ê³¼ ì§ê¸‰ì„ ì¶œë ¥í•˜ëŠ” SQLë¬¸ ì‘ì„±?
+select employee.ename, employee.job from emp employee, emp manager where employee.mgr = manager.empno and manager.empname = 'KING';
 --
---       Q3. SCOTT°ú µ¿ÀÏÇÑ ±Ù¹«Áö¿¡¼­ ±Ù¹«ÇÏ´Â »ç¿øÀÇ ÀÌ¸§À» Ãâ·ÂÇÏ´Â SQL¹® ÀÛ¼º?
+--       Q3. SCOTTê³¼ ë™ì¼í•œ ê·¼ë¬´ì§€ì—ì„œ ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ì˜ ì´ë¦„ì„ ì¶œë ¥í•˜ëŠ” SQLë¬¸ ì‘ì„±?
 select ename from emp where deptno = (select deptno from emp where ename = 'SCOTT');
 
